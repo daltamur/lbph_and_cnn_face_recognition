@@ -3,10 +3,10 @@ import cv2
 
 # get the model
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-imageNames = os.listdir('curunknown')
+imageNames = os.listdir('jpg')
 
 for image in imageNames:
-    img = cv2.imread('curunknown/'+image)
+    img = cv2.imread('jpg/'+image)
     faces = face_cascade.detectMultiScale(img, 1.1, 4)
 
     if len(faces) == 1:

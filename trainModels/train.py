@@ -8,20 +8,20 @@ import matplotlib.pyplot as plt
 
 
 def train_lbph(lbph):
-    faces, face_labels, name_dict = getImages.getImages()
+    faces, face_labels, name_dict = getImages.getImagesLBPH()
     lbph.train(faces, np.array(face_labels), name_dict)
 
 
 def train_cnn(cnn):
     # gather all the images
-    faces, face_labels, name_dict = getImages.getImages()
+    faces, face_labels, name_dict = getImages.getImagesCNN()
 
     # set the cnn output layer before we forget
     cnn.set_output_layer(name_dict)
 
     retrain = 'y'
     if exists('savedModels/cnn.tfl.meta'):
-        retrain = input("We found a previously saved model. Proceed with retraining? (type y/n)")
+        retrain = input("We found a previously saved model. Proceed with retraining? (type y/n): ")
 
     if retrain == 'y':
         # turn image labels to ohe vector
@@ -37,10 +37,10 @@ def train_cnn(cnn):
         test = total_face_data[train_length:]
 
         # prepare training and testing data
-        x_train = np.array(([i[0] for i in train])).reshape(-1, 120, 120, 1)
+        x_train = np.array(([i[0] for i in train])).reshape(-1, 150, 150, 3)
         print(x_train.shape)
         y_train = [i[1] for i in train]
-        x_test = np.array(([i[0] for i in test])). reshape(-1, 120, 120, 1)
+        x_test = np.array(([i[0] for i in test])). reshape(-1, 150, 150, 3)
         print(x_test.shape)
         y_test = [i[1] for i in test]
         cnn.train(x_train, y_train, x_test, y_test)
