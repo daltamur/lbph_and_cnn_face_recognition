@@ -2,9 +2,7 @@ from os.path import exists
 from random import shuffle
 
 import numpy as np
-from lbphModel import lbph
 from getWebCamImages import getImages
-import matplotlib.pyplot as plt
 
 
 def train_lbph(lbph):

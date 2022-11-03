@@ -1,6 +1,4 @@
 import cv2
-import numpy as np
-from lbphModel import lbph
 
 # get the model
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
